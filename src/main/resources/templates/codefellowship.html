@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Code Fellowship Page</h1>
+    <br />
+    <p>This is a demo page that accepts logins and stuff</p>
+    <br />
+    <div th:style="${present} ? 'display:none' : 'display:block'">
+        <a th:href="@{/login}">Login Here</a>
+        <br />
+        <a th:href="@{/signup}">Sign Up Here!</a>
+    </div>
+    <div th:style="${present} ? 'display:block' : 'display:none'">
+        <p>Hello, <span th:text="${user}"></span></p>
+        <a th:href="@{'/users/' + ${user}}">See profile</a>
+        <a th:href="@{/logout}">>Logout</a>
+    </div>
+</body>
+</html>
