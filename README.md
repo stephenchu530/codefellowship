@@ -30,14 +30,6 @@ Ensure the following:
 
 Go to: `http://localhost:8080`
 
-
-#### How to use Songr App
-* C
-
-* From here, you can add a new album.
-
-* After adding a new album, you can add new songs.
-
 ## Contributors
 * Stephen Chu, [stephenchu530](https://github.com/stephenchu530)
 
