@@ -4,15 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
+import java.security.Principal;
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -25,7 +22,7 @@ public class AppUserController {
     @Autowired
     PasswordEncoder bCryptPasswordEncoder;
 
-    @PostMapping("/users")
+    @PostMapping("/createNewUser")
     public RedirectView createUser(@RequestParam String username,
                                    @RequestParam String password,
                                    @RequestParam String fName,
@@ -49,9 +46,10 @@ public class AppUserController {
         return "login";
     }
 
-    @GetMapping("/users/{userName}")
-    public String getProfile(@PathVariable String userName, Model m) {
-        AppUser user = appUserRepository.findByUsername(userName);
+    @GetMapping("/myprofile")
+    public String getProfile(Principal p, Model m) {
+        AppUser user = appUserRepository.findByUsername(p.getName());
+        m.addAttribute("p", p);
         m.addAttribute("user", user);
         return "profile";
     }

@@ -10,15 +10,11 @@
     <title>Title</title>
 </head>
 <body>
+    <header th:replace="fragments/header::header"></header>
     <h1>Code Fellowship Page</h1>
     <br />
     <p>This is a demo page that accepts logins and stuff</p>
-    <br /><div th:if="${p != null}">
-        <p>Hello, <span th:text="${user.username}"></span></p>
-        <p><a th:href="@{'/users/' + ${user.username}}">See profile</a></p>
-        <p><a th:href="@{/logout}">>Logout</a></p>
-    </div>
-    <div th:if="${p == null}">
+    <br /><div th:if="${p == null}">
         <a th:href="@{/login}">Login Here</a>
         <br />
         <a th:href="@{/signup}">Sign Up Here!</a>

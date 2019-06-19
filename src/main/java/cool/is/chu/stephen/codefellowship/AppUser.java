@@ -1,27 +1,29 @@
 package cool.is.chu.stephen.codefellowship;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
+import java.sql.Date;
+import java.util.List;
 
 @Entity
 public class AppUser implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
+    @Column(unique=true)
     String username;
     String password;
     String fName;
     String lName;
     Date birthDate;
     String bio;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<Post> posts;
 
     public AppUser() {}
 
@@ -115,5 +117,9 @@ public class AppUser implements UserDetails {
 
     public void setlName(String lName) {
         this.lName = lName;
+    }
+
+    public List<Post> getPosts() {
+        return new ArrayList<Post>(this.posts);
     }
 }
