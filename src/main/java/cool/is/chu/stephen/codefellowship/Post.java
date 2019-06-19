@@ -15,9 +15,10 @@ public class Post {
 
     public Post() {}
 
-    public Post(String body, Date createdAt) {
+    public Post(String body, Date createdAt, AppUser user) {
         this.setBody(body);
         this.setCreatedAt(createdAt);
+        this.setUser(user);
     }
 
     public long getId() {

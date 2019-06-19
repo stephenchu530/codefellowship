@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:if="${not #lists.isEmpty(user.posts)}" th:fragment="listposts">
+    <ul>
+        <li th:each="post: ${user.posts}">
+            <p>Post: <span th:text="${post.body}"></span></p>
+            <p>Create Date: <span th:text="${post.createdAt}"></span></p>
+        </li>
+    </ul>
+</div>
+</html>

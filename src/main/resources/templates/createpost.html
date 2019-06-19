@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Create a Post</title>
+</head>
+<body>
+    <header th:replace="fragments/header::header"></header>
+    <h1>Create a Post</h1>
+    <br />
+    <form action="/createnewpost" method="POST">
+        <label for="body">Post body: </label><textarea name="body" id="body"></textarea><input type="submit" />
+    </form>
+</body>
+</html>

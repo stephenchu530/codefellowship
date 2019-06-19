@@ -1,5 +1,6 @@
 package cool.is.chu.stephen.codefellowship;
 
+import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
@@ -13,6 +14,7 @@ public class AppUser implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
+    @Column(unique=true)
     String username;
     String password;
     String fName;
