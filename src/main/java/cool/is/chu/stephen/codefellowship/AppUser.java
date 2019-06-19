@@ -100,4 +100,20 @@ public class AppUser implements UserDetails {
     public void setBio(String bio) {
         this.bio = bio;
     }
+
+    public String getFName() {
+        return this.fName;
+    }
+
+    public void setFName(String fName) {
+        this.fName = fName;
+    }
+
+    public String getLName() {
+        return this.lName;
+    }
+
+    public void setlName(String lName) {
+        this.lName = lName;
+    }
 }

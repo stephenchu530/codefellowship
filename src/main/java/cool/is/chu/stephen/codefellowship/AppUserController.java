@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
-
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -33,7 +32,6 @@ public class AppUserController {
                                    @RequestParam String lName,
                                    @RequestParam Date birthDate,
                                    @RequestParam String bio) {
-        System.out.println(birthDate);
         AppUser newUser = new AppUser(username, bCryptPasswordEncoder.encode(password), fName, lName, birthDate, bio);
         appUserRepository.save(newUser);
         Authentication authentication = new UsernamePasswordAuthenticationToken(newUser, null, new ArrayList<>());
