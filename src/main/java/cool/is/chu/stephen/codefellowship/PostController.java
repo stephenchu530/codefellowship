@@ -7,10 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
-
-import java.security.Principal;
 import java.sql.Date;
-import static org.aspectj.bridge.Version.getTime;
+import java.security.Principal;
+import java.util.Calendar;
 
 @Controller
 public class PostController {
@@ -31,8 +30,7 @@ public class PostController {
     @PostMapping("/createnewpost")
     public RedirectView createNewPost(@RequestParam String body, Principal p) {
         AppUser user = appUserRepository.findByUsername(p.getName());
-        Date date = new Date(getTime());
-        Post post = new Post(body, date, user);
+        Post post = new Post(body, new Date(Calendar.getInstance().getTime().getTime()), user);
         postRepository.save(post);
         return new RedirectView("/myprofile");
     }
