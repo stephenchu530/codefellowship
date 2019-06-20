@@ -5,21 +5,21 @@
     <!--    the following meta and links are from https://www.w3schools.com/w3css/w3css_templates.asp-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" type="text/css" href="/css/custom-style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Profile Page</title>
+    <title>Users Page</title>
 </head>
 <body>
     <header th:replace="fragments/header::header"></header>
-    <h1>Hi <span th:text="${p.name}"></span></h1>
+    <h1>Viewing User Profile</span></h1>
     <br />
     <div th:replace="fragments/profileinfo::profileinfo"></div>
     <br />
-    <div class="myposts">
-        <h2>My Posts</h2>
-        <a th:href="@{/createpost}">Create a post</a>
-        <div th:replace="fragments/post::listposts"></div>
-    </div>
+    <form th:if="${canfollow}" th:action="'/followuser/' + ${user.id}" method="POST">
+        <input type="submit" value="Follow"/>
+    </form>
+    <br />
+    <h2>Posts</h2>
+    <div th:replace="fragments/post::listposts"></div>
 </body>
 </html>

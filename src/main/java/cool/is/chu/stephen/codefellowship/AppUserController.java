@@ -1,6 +1,7 @@
 package cool.is.chu.stephen.codefellowship;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -46,12 +47,30 @@ public class AppUserController {
         return "login";
     }
 
+    @GetMapping("/users")
+    public String showAllUsers(Principal p, Model m) {
+        Iterable<AppUser> users = appUserRepository.findAll();
+        m.addAttribute("users", users);
+        return "allusers";
+    }
+
     @GetMapping("/users/{id}")
     public String getUser(Principal p, Model m, @PathVariable long id) {
-        AppUser user = appUserRepository.findById(id).get();
+        boolean canfollow = true;
+        AppUser owner = appUserRepository.findByUsername(p.getName());
+        AppUser userToFollow = appUserRepository.findById(id).get();
+        if (owner.getFollow().contains(userToFollow)) {
+            canfollow = false;
+        }
+
+        if (owner.equals(userToFollow)) {
+            canfollow = false;
+        }
+
         m.addAttribute("p", p);
-        m.addAttribute("user", user);
-        return "users";
+        m.addAttribute("user", userToFollow);
+        m.addAttribute("canfollow", canfollow);
+        return "user";
     }
 
     @GetMapping("/myprofile")
@@ -60,6 +79,27 @@ public class AppUserController {
         m.addAttribute("p", p);
         m.addAttribute("user", user);
         return "profile";
+    }
+
+    @PostMapping("/followuser/{id}")
+    public RedirectView followUser(Principal p, @PathVariable long id) {
+        if (!appUserRepository.findById(id).get().getUsername().equals(p.getName())) {
+            AppUser owner = appUserRepository.findByUsername(p.getName());
+            AppUser userToFollow = appUserRepository.findById(id).get();
+            owner.setFollow(userToFollow);
+            appUserRepository.save(owner);
+        } else {
+            throw new AppUserException("Cannot follow this user!");
+        }
+        return new RedirectView("/users/" + id);
+    }
+
+    // came from https://stackoverflow.com/questions/2066946/trigger-404-in-spring-mvc-controller
+    @ResponseStatus(value = HttpStatus.FORBIDDEN)
+    class AppUserException extends RuntimeException {
+        public AppUserException(String s) {
+            super(s);
+        }
     }
 }
 

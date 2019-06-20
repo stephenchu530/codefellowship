@@ -7,15 +7,15 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Users Page</title>
+    <title>All Users</title>
 </head>
 <body>
     <header th:replace="fragments/header::header"></header>
-    <h1>Viewing User Profile</span></h1>
-    <br />
-    <div th:replace="fragments/profileinfo::profileinfo"></div>
-    <br />
-    <h2>Posts</h2>
-    <div th:replace="fragments/post::listposts"></div>
+    <h1>Showing All Users</h1>
+    <ul>
+        <li th:each="user: ${users}">
+            <a th:href="@{'/users/' + ${user.id}}" ><span th:text="${user.username}"></span></a>
+        </li>
+    </ul>
 </body>
 </html>
