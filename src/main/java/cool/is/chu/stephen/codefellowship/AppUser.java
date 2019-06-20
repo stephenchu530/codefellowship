@@ -1,6 +1,5 @@
 package cool.is.chu.stephen.codefellowship;
 
-import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
@@ -8,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.sql.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class AppUser implements UserDetails {
@@ -24,6 +24,9 @@ public class AppUser implements UserDetails {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     List<Post> posts;
+
+    @OneToMany
+    Set<AppUser> follow;
 
     public AppUser() {}
 
@@ -121,5 +124,13 @@ public class AppUser implements UserDetails {
 
     public List<Post> getPosts() {
         return new ArrayList<Post>(this.posts);
+    }
+
+    public void setFollow(AppUser user) {
+        this.follow.add(user);
+    }
+
+    public ArrayList<AppUser> getFollow() {
+        return new ArrayList<AppUser>(this.follow);
     }
 }

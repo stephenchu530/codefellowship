@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <div th:fragment="profileinfo">
+        <img src="/imgs/avatar-placeholder.jpg" alt="avatar placeholder" class="avatarplaceholder" style="width:100px"/>
+        <p>User Name: <span th:text="${user.username}"></span></p>
+        <p>First Name: <span th:text="${user.fName}"></span></p>
+        <p>Last Name: <span th:text="${user.lName}"></span></p>
+        <p>Birth Date: <span th:text="${user.birthDate}"></span></p>
+        <p>Biography: <span th:text="${user.bio}"></span></p>
+    </div>
+</html>

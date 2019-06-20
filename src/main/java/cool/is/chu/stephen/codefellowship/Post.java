@@ -2,6 +2,7 @@ package cool.is.chu.stephen.codefellowship;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
 public class Post {
@@ -9,13 +10,13 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
     String body;
-    Date createdAt;
+    Timestamp createdAt;
     @ManyToOne
     AppUser user;
 
     public Post() {}
 
-    public Post(String body, Date createdAt, AppUser user) {
+    public Post(String body, Timestamp createdAt, AppUser user) {
         this.setBody(body);
         this.setCreatedAt(createdAt);
         this.setUser(user);
@@ -37,11 +38,11 @@ public class Post {
         this.body = body;
     }
 
-    public Date getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 

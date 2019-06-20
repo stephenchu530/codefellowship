@@ -7,13 +7,14 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Title</title>
+    <title>Code Fellowship</title>
 </head>
 <body>
     <header th:replace="fragments/header::header"></header>
     <h1>Code Fellowship Page</h1>
     <br />
     <p>This is a demo page that accepts logins and stuff</p>
+    <p>You can create profile and make posts! So much fun</p>
     <br /><div th:if="${p == null}">
         <a th:href="@{/login}">Login Here</a>
         <br />

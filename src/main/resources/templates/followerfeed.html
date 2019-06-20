@@ -8,18 +8,17 @@
     <link rel="stylesheet" type="text/css" href="/css/custom-style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Profile Page</title>
+    <title>Followers' Feed</title>
 </head>
 <body>
-    <header th:replace="fragments/header::header"></header>
+<header th:replace="fragments/header::header"></header>
     <h1>Hi <span th:text="${p.name}"></span></h1>
-    <br />
-    <div th:replace="fragments/profileinfo::profileinfo"></div>
-    <br />
-    <div class="myposts">
-        <h2>My Posts</h2>
-        <a th:href="@{/createpost}">Create a post</a>
-        <div th:replace="fragments/post::listposts"></div>
-    </div>
+    <p>Here are the posts from who you follow:</p>
+    <ul>
+        <li th:each="user: ${follows}">
+            <a th:href="@{'/users/' + ${user.id}}" ><span th:text="${user.username}"></span></a>
+            <div th:replace="fragments/post::listposts"></div>
+        </li>
+    </ul>
 </body>
 </html>
