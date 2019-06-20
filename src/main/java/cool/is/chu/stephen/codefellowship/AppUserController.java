@@ -46,6 +46,14 @@ public class AppUserController {
         return "login";
     }
 
+    @GetMapping("/users/{id}")
+    public String getUser(Principal p, Model m, @PathVariable long id) {
+        AppUser user = appUserRepository.findById(id).get();
+        m.addAttribute("p", p);
+        m.addAttribute("user", user);
+        return "users";
+    }
+
     @GetMapping("/myprofile")
     public String getProfile(Principal p, Model m) {
         AppUser user = appUserRepository.findByUsername(p.getName());

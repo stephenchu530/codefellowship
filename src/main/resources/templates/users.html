@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <!--    the following meta and links are from https://www.w3schools.com/w3css/w3css_templates.asp-->
@@ -7,14 +7,15 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Create a Post</title>
+    <title>Users Page</title>
 </head>
 <body>
     <header th:replace="fragments/header::header"></header>
-    <h1>Create a Post</h1>
+    <h1>Viewing User Profile</span></h1>
     <br />
-    <form action="/createnewpost" method="POST">
-        <label for="body">Post body: </label><textarea name="body" id="body"></textarea><input type="submit" />
-    </form>
+    <div th:replace="fragments/profileinfo::profileinfo"></div>
+    <br />
+    <h2>Posts</h2>
+    <div th:replace="fragments/post::listposts"></div>
 </body>
 </html>
