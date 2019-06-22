@@ -25,7 +25,7 @@ public class AppUser implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     List<Post> posts;
 
-    @OneToMany
+    @ManyToMany
     Set<AppUser> follow;
 
     public AppUser() {}

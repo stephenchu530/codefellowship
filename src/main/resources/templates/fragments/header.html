@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <div th:fragment="header">
-        <header th:if="${p != null}" >
+    <div th:fragment="header"><header th:if="${p != null}" >
             <p>Hello, <span th:text="${p.name}"></span></p>
             <a th:href="@{/}"> Go home</a>
             <p><a th:href="@{'/feed'}">Go to My Followers' Feed</a></p>
             <p><a th:href="@{'/myprofile'}">Go to My Profile</a></p>
             <p><a th:href="@{'/users'}">Show All Users</a></p>
             <p><a th:href="@{/logout}">>Logout</a></p>
-        </header>
-    </div>
+        </header></div>
 </html>
