@@ -1,7 +1,16 @@
 # codefellowship
 
 ## Description
-This project uses Java Spring and other dependencies  to create a site that uses a DB and security.
+This project uses Java Spring and other dependencies  to create a simple site that demonstrates DB usage and authenication.
+
+## See the Deployed Site
+Use your favorite browser and point it to:
+```
+ http://codefellowship-env.wzf9bdbsze.us-east-2.elasticbeanstalk.com/
+```
+
+#### If you want to run it locally, then continue on:
+
 ## Installation
 
 ```
@@ -17,7 +26,7 @@ or
 Ensure the following:
 
 * `Postgresql` is running on your server.
-  * `codefellowship` database is created in `postgresql`.
+* Ensure the `codefellowship` database is created in `postgresql`.
 
 ## Usage
 
@@ -26,7 +35,7 @@ Ensure the following:
  $ ./gradlew bootRun
 ```
 
-*Browse the site:*
+*Browse to the local site:*
 
 Go to: `http://localhost:8080`
 
